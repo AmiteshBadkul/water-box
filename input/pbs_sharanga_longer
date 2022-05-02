@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH -p compute
+#SBATCH -N 1
+#SBATCH -n 8
+#SBATCH -t 120:00:00
+#SBATCH --job-name="water_system"
+#SBATCH -o slurm.%j.out
+#SBATCH -e slurm.%j.err
+#SBATCH --mail-user=f20180764@hyderabad.bits-pilani.ac.in
+#SBATCH --mail-type=ALL
+
+#module load namd-2.14-gcc-10.2.0-blihfvg
+# module load openmpi-4.0.5-gcc-10.2.0-vx4yhsi
+#module load namd-2.14-aocc-2.3.0-besm5io
+#module load openmpi-4.0.5-aocc-2.3.0-kyn74k2
+
+spack load namd %aocc
+
+#srun namd2 prod26.in>prodout26
+
+#charmrun ++n 8 srun namd2 prod26.in > out
+namd2 +setcpuaffinity +p8 eq1.in > out1
+mv out1 /scratch/durba/amitesh/water_system
+namd2 +setcpuaffinity +p8 eq2.in > out2
+mv out2 /scratch/durba/amitesh/water_system
+namd2 +setcpuaffinity +p8 eq3.in > out3
+mv out3 /scratch/durba/amitesh/water_system
+namd2 +setcpuaffinity +p8 eq4.in > out4
+mv out4 /scratch/durba/amitesh/water_system

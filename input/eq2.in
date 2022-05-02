@@ -1,0 +1,116 @@
+# inputs
+# NVT system
+
+coordinates = ./solvate.pdb
+
+structure = ./solvate.psf
+
+parameters = ./par_all27_prot_lipid.inp
+
+paraTypeXplor off
+
+paraTypeCharmm on
+
+binvelocities = eq1.vel
+
+bincoordinates = eq1.coor
+
+#output
+
+outputname = eq2
+
+restartname = eq2
+
+restartfreq = 2000
+
+DCDfile = eq2.dcd
+
+DCDfreq = 25000
+
+DCDUnitCell yes
+
+outputEnergies = 25000
+
+outputTiming = 25000
+
+numsteps = 1000000
+
+#timing specs
+
+firsttimestep = 0
+
+timestep = 2
+
+stepspercycle = 10
+
+#spatial considerations
+
+cutoff = 12.0
+
+switching on
+
+switchdist = 10.0
+
+#dynamics
+
+#seed 285061
+
+exclude = scaled1-4
+
+1-4scaling 1.0
+
+rigidBonds = all #SHAKE on
+
+#electrostatics
+
+PME = on
+
+PMEInterpOrder = 6
+
+PMEGridSpacing = 1
+
+#boundary conditions
+
+cellOrigin = 0. 0. 0.
+
+cellBasisVector1 = 40.000 0 0
+
+cellBasisVector2 = 0 40.000 0
+
+cellBasisVector3 = 0 0 40.000
+
+#extendedSystem eq0.xsc
+
+#NB timestep params
+
+fullElectFrequency = 2
+
+nonbondedFreq = 1
+
+#pressure
+
+#useGroupPressure yes
+#useFlexibleCell no
+#useConstantArea no
+#LangevinPiston on
+#LangevinPistonTarget = 1.01325
+#LangevinPistonPeriod = 100
+#LangevinPistonDecay = 50
+#LangevinPistonTemp = 300.0
+
+# Constant Temperature Control
+
+Langevin on
+LangevinDamping 1
+LangevinTemp 300
+LangevinHydrogen no
+
+# temperature 300
+
+# minimization on
+
+#constraints
+
+#margin 5
+
+#run 1000000
